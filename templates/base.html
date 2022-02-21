@@ -13,7 +13,9 @@
             <div class="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item" href="{%url 'admin:index'%}">Admin page</a>
-                    <a class="navbar-item" href="{{app_url}}">Open {{app_label}}</a>
+                    <a class="navbar-item" href="{{app_url}}/gym">Add GYM {{app_label}}</a>
+                    <a class="navbar-item" href="{{app_url}}/gym/attendee">Add ATTENDEE{{app_label}}</a>
+                    <a class="navbar-item" href="{{app_url}}/gym/attendee/1">Change ATTENDEE{{app_label}}</a>
                     {% if debug_setting %}
                         <a class="navbar-item" href="{{changelog.open_api_ui}}">Open OpenApi</a>
                     {% endif %}

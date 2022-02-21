@@ -2,16 +2,7 @@ import os
 
 from invoke import task
 
-from . import (
-    common,
-    data,
-    django,
-    docker,
-    git,
-    is_local_python,
-    linters,
-    tests,
-)
+from . import common, data, django, docker, is_local_python, linters, tests
 
 ##############################################################################
 # Build project locally

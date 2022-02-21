@@ -1,9 +1,7 @@
-from distutils.util import subst_vars
 from django.contrib import admin
-from django.utils.translation import gettext_lazy as _
 
 from ..core.admin import BaseAdmin
-from .models import Gym, Subscription, Attendee
+from .models import Attendee, Gym, Subscription
 
 
 @admin.register(Attendee)
@@ -12,7 +10,7 @@ class AttendeeAdminModel(BaseAdmin):
     list_filter = (
         'user',
         'gym',
-        'subscription'
+        'subscription',
     )
 
 
@@ -22,7 +20,7 @@ class SubscriptionAdminModel(BaseAdmin):
     list_display = (
         'name',
         'gym',
-        '_subscribers_count'
+        '_subscribers_count',
     )
     list_filter = (
         'gym',
@@ -55,7 +53,7 @@ class GymAdminModel(BaseAdmin):
     )
     search_fields = (
         'name',
-        'boss__email'
+        'boss__email',
     )
     filter_horizontal = (
         'attendees',
@@ -67,6 +65,6 @@ class GymAdminModel(BaseAdmin):
             'fields': (
                 'name',
                 'boss',
-            )
+            ),
         }),
     )

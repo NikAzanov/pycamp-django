@@ -1,6 +1,5 @@
-from pyexpat import model
-from statistics import mode
 from django.db import models
+
 from apps.core.models import BaseModel
 
 
@@ -8,7 +7,7 @@ class Gym(BaseModel):
     """Simple model for Gym."""
     name = models.CharField(
         max_length=64,
-        verbose_name='Name'
+        verbose_name='Name',
     )
     boss = models.ForeignKey(
         to='users.User',
@@ -16,16 +15,20 @@ class Gym(BaseModel):
         related_name='own_gyms',
         verbose_name='Boss of the Gym',
     )
+    description = models.TextField(
+        blank=True,
+        verbose_name='Description',
+        max_length=1024,
+    )
     attendees = models.ManyToManyField(
         to='users.User',
         through='gym.Attendee',
         related_name='gym_attendees',
-        verbose_name='Attendees'
+        verbose_name='Attendees',
     )
 
     def __str__(self):
         return self.name
-
 
 
 class Subscription(BaseModel):
@@ -37,7 +40,7 @@ class Subscription(BaseModel):
         to=Gym,
         on_delete=models.CASCADE,
         related_name='subscriptions',
-        verbose_name='Gym'
+        verbose_name='Gym',
     )
 
     def __str__(self):
@@ -70,5 +73,5 @@ class Attendee(BaseModel):
 
     class Meta:
         unique_together = (
-            'user', 'gym'
+            'user', 'gym',
         )
