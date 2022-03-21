@@ -1,0 +1,13 @@
+
+{% extends "email_base.html" %}
+{% load i18n %}
+
+{% block email_body %}
+  {% autoescape off %}
+	{% blocktrans with app_url=app_url app_label=app_label %}
+      <p>Hello {{ user }} from {{ app_label }}!</p>
+      <p>Your boss({{ boss }}) is waiting you in gym({{ gym }})</p>
+  {% endblocktrans %}
+  {% endautoescape %}
+{% endblock %}
+

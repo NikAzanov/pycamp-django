@@ -4,6 +4,7 @@ from django.shortcuts import render
 from apps.gym.models import Attendee, Gym
 
 from .forms import AttendeeModelForm, GymForm
+from .tasks import send_notifications
 
 
 def add_gym(request):
@@ -35,7 +36,8 @@ def add_attendee(request):
     if request.method == 'POST':
         form = AttendeeModelForm(request.POST)
         if form.is_valid():
-            form.save()
+            attendee = form.save()
+            send_notifications.delay(attendees=[attendee])
             return HttpResponseRedirect('success')
     else:
         form = AttendeeModelForm()
